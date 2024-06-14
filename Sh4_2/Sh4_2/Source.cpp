@@ -1,7 +1,6 @@
-
 #include "Header.h"
 
-   Data::Data(std::string data, Format format)
+   Data::Data(std::string data, Printable::Format format)
         : data_(std::move(data)), format_(format) {}
 
     std::string Data::printAsHTML() const 

@@ -12,7 +12,7 @@ public:
 
 class Data : public Printable
 {
-public:
+public://принцип разделения интерфейса - нужно перенести Format в Printable
     enum class Format
     {
         kText,
@@ -22,7 +22,8 @@ public:
 
     Data(std::string data, Format format)
         : data_(std::move(data)), format_(format) {}
-
+//Нарушение принципа открытости закрытости заключается в необходимости переписывать набор 
+//для Format и доббавлять в класс методы
     std::string printAsHTML() const override
     {
         if (format_ != Format::kHTML) {
@@ -54,7 +55,7 @@ void saveTo(std::ofstream &file, const Printable& printable, Data::Format format
 {
     switch (format)
     {                                       // принцип Лисков не разрешает переопределять методы
-    case Data::Format::kText:
+    case Data::Format::kText:               //лучше создать подклассы с соответствующими методами
         file << printable.printAsText();
         break;
     case Data::Format::kJSON:

@@ -1,5 +1,4 @@
-﻿
-#include "Header.h"
+﻿#include "Header.h"
 #include <iostream>
 
 int main()

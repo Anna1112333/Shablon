@@ -4,8 +4,13 @@
 class Printable
 {
 public:
+enum class Format
+    {
+        kText,
+        kHTML,
+        kJSON
+    };
     virtual ~Printable() = default;
-
     virtual std::string printAsHTML() const = 0;
     virtual std::string printAsText() const = 0;
     virtual std::string printAsJSON() const = 0;
@@ -13,23 +18,12 @@ public:
 
 class Data : public Printable
 {
-public:
-    enum class Format
-    {
-        kText,
-        kHTML,
-        kJSON
-    };
+public:   
 
     Data(std::string data, Format format); 
-
-    std::string printAsHTML() const override;
-    
-    std::string printAsText() const override;
-    
-    std::string printAsJSON() const override;
-    
-
+    std::string printAsHTML() const override;    
+    std::string printAsText() const override;    
+    std::string printAsJSON() const override;  
 private:
     std::string data_;
     Format format_;
